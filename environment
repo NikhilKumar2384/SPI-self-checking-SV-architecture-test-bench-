@@ -1,0 +1,30 @@
+class environment;
+  virtual intff vit;
+  generator gen;
+  driver dvr;
+  monitor mnr;
+  scoreboard scr;
+ mailbox gen2dvr,mon2scr;
+  bit [1:0]mode;
+  
+  function new(virtual intff vit,bit [1:0]mode);
+    this.vit=vit;
+    this.mode=mode;
+    gen2dvr=new();
+    mon2scr=new();
+    gen=new(gen2dvr,mode);
+    dvr=new(vit,gen2dvr);
+    mnr=new(vit,mon2scr);
+    scr=new(mon2scr);
+  endfunction
+  
+  task run();
+    fork
+      gen.main();
+      dvr.main();
+      mnr.main();
+      scr.main();
+    join
+  endtask
+  
+endclass

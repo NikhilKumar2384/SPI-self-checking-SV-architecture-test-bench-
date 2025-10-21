@@ -1,143 +1,64 @@
-🧩 SPI Protocol – Transaction-Based Testbench
+# 🧩 SPI Protocol – Transaction-Based Testbench
 
-This repository contains a SystemVerilog transaction-level testbench (TB) for verifying the SPI (Serial Peripheral Interface) protocol.
-The project demonstrates how to build a modular, reusable verification environment using SystemVerilog OOP concepts such as classes, transactions, and mailboxes.
+This repository contains a **SystemVerilog transaction-level testbench (TB)** for verifying the **SPI (Serial Peripheral Interface)** protocol.  
+The project demonstrates how to build a modular, reusable **verification environment** using **SystemVerilog OOP concepts** such as classes, transactions, and mailboxes.
 
-📘 Project Overview
+---
 
-The SPI Protocol is a synchronous serial communication interface used for short-distance communication between a master and slave device.
-This project implements and verifies SPI behavior using a layered testbench.
+## 📘 Project Overview
+
+The **SPI Protocol** is a synchronous serial communication interface used for short-distance communication between a **master** and **slave** device.  
+This project implements and verifies SPI behavior using a **layered testbench** approach.
 
 The verification environment includes:
+- **Driver, Monitor, Generator, Scoreboard, Interface, Environment, and Transaction** classes.
+- Separate **Master and Slave** design modules.
+- A **Top-Level Testbench** connecting all components.
 
-Driver, Monitor, Generator, Scoreboard, Interface, Environment, and Transaction classes.
+---
 
-Separate Master and Slave design modules.
+## 🧱 Repository Structure
 
-A Top-Level Testbench connecting all components.
-
-
-
-
-🧱 Repository Structure
 SPI-Protocol-TB/
 │
-├── master                    # SPI Master module (DUT)
-├── slave                     # SPI Slave module (DUT)
+├── master # SPI Master module (DUT)
+├── slave # SPI Slave module (DUT)
 │
-├── interface tb              # Interface connecting DUT and TB
-├── transaction tb            # Defines SPI transaction (data item class)
-├── generator tb              # Randomly generates SPI transactions
-├── driver tb                 # Drives signals to DUT using transaction data
-├── monitor tb                # Monitors DUT outputs and collects data
-├── scoreboard tb             # Compares expected vs actual results
-├── environment tb            # Connects all components into one environment
-├── test tb                   # Defines specific test scenario(s)
-├── top testbench tb          # Top-level TB connecting DUTs and environment
+├── interface tb # Interface connecting DUT and TB
+├── transaction tb # Defines SPI transaction (data item class)
+├── generator tb # Randomly generates SPI transactions
+├── driver tb # Drives signals to DUT using transaction data
+├── monitor tb # Monitors DUT outputs and collects data
+├── scoreboard tb # Compares expected vs actual results
+├── environment tb # Connects all components into one environment
+├── test tb # Defines specific test scenario(s)
+├── top testbench tb # Top-level TB connecting DUTs and environment
 │
-└── README.md                 # Project description (this file)
+└── README.md # Project description (this file)
 
 
 
+---
 
-⚙️ Testbench Architecture
+Or you can upload it directly to your repo under `/docs/` or `/waveforms/` and link it here.
 
-This verification environment follows the layered testbench architecture:
+---
 
-            +----------------------+
-            |      Test Class      |
-            +----------+-----------+
-                       |
-                       v
-             +---------+----------+
-             |    Environment     |
-             +---------+----------+
-                       |
-      +---------+------+-------+---------+
-      |         |              |         |
-      v         v              v         v
-  Generator   Driver       Monitor    Scoreboard
-      |         |              |         |
-      |         +-----+  +-----+         |
-      |               |  |               |
-      +---------------+--+---------------+
-                      |
-                   Interface
-                      |
-             +--------+--------+
-             |   DUT (SPI)     |
-             | Master & Slave  |
-             +-----------------+
+## 🚀 Key Features
 
+- Transaction-level verification using **SystemVerilog classes and mailboxes**
+- Supports **configurable SPI modes** (CPOL/CPHA)
+- Modular and reusable **verification components**
+- Easy to scale for **multiple SPI slaves**
+- Clean **OOP-based structure**
 
+---
 
+## 🧰 Tools Used
 
-             
+- **Language:** SystemVerilog  
+- **Simulator:** EDA Playground
+- **Waveform Viewer:** EDA Playground
+- **Version Control:** Git + GitHub  
 
-🧪 Simulation Steps
-
-Compile all files in your simulator (ModelSim / Questa / Vivado).
-
-Run the top testbench file (top testbench tb).
-
-Observe the generated waveforms:
-
-MOSI / MISO data transfer
-
-SCLK generation
-
-CS (Chip Select) control
-
-Check console/log output for transaction pass/fail reports.
-
-
-
-
-📈 Waveform Results
-
-You can showcase your waveform results in this section:
-
-🖼 Example Waveform
-Signal	Description
-SCLK	Serial Clock generated by Master
-MOSI	Master Out Slave In
-MISO	Slave Out Master In
-CS	Chip Select signal
-DATA	Data transaction visualized
-
-
-
-
-
-
-
-
-🚀 Key Features
-
-Transaction-level verification using SystemVerilog classes and mailboxes
-
-Supports configurable SPI modes (CPOL/CPHA)
-
-Modular and reusable verification components
-
-Easy to scale for multiple SPI slaves
-
-Clean OOP-based structure
-
-
-
-
-
-
-
-
-
-🧰 Tools Used
-
-Language: SystemVerilog
-
-Simulator: ModelSim / QuestaSim / Vivado Simulator
-
-Waveform Viewer: GTKWave or built-in tool
-
-Version Control: Git + GitHub
+---

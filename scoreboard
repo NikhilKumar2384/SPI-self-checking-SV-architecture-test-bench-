@@ -1,0 +1,26 @@
+class scoreboard;
+  transaction trans;
+  mailbox mon2scr;
+  
+  function new(mailbox mon2scr);
+    this.mon2scr=mon2scr;
+  endfunction
+  
+  task main();
+    repeat (10)
+      begin
+        trans=new();
+        mon2scr.get(trans);
+        trans.display("scoreboard signal") ;
+        
+        if(trans.data_tx_m==trans.data_rx_sl  && trans.data_tx_sl==trans.data_rx_m)begin
+          $display("------pass------");
+        end
+        else begin $display("----!!!!false!!!----");
+          end
+              $display("///////////////////////////////////////");
+        
+        
+      end
+  endtask
+endclass

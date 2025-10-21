@@ -1,0 +1,92 @@
+
+`include "transaction.sv"
+`include "generator.sv"
+`include "driver.sv"
+`include "interface.sv"
+`include "monitor.sv"
+`include "scoreboard.sv"
+`include "environment.sv"
+`include "test.sv"
+
+
+module mas_sl_tb;
+  reg clk;
+  
+  initial clk=0;
+  always #10 clk=~clk;
+  
+   intff vit(clk);
+  
+  
+  master dut_m(
+    .mosi(vit.mosi),
+    .clk(clk),
+    .start(vit.start),
+    .reset(vit.reset),
+    .miso(vit.miso),
+    .done(vit.done),
+    .cs(vit.cs),
+    .sclk(vit.sclk),
+    .mode(vit.mode),
+    .data_tx(vit.data_tx_m),
+    .data_rx(vit.data_rx_m)
+    
+  );
+  
+  slave dut_sl(.miso(vit.miso),
+               .mosi(vit.mosi),
+               .sclk(vit.sclk),
+               .cs(vit.cs),
+               .mode(vit.mode),
+               .reset(vit.reset),
+               .data_tx_sl(vit.data_tx_sl),
+               .data_rx_sl(vit.data_rx_sl),
+               .done_sl(vit.done_sl),
+              .clk(clk)
+    
+  );
+  test tst;
+  
+  initial begin
+   vit. reset=1;
+    #30 vit.reset=0;
+  end
+  
+  initial begin
+    $dumpfile("mas_sl.vcd");
+    $dumpvars(0,mas_sl_tb);
+    $display("======1=====");
+    tst=new(vit,2'b00);
+   tst.test_run();
+    
+    $display("======2=====");
+    tst=new(vit,2'b01);
+   tst.test_run();
+  $finish;
+    
+  end
+  
+  
+//   initial begin
+//    vit. reset=1;
+//     #30 vit.reset=0;
+//   end
+  
+//   initial begin
+//     $dumpfile("mas_sl.vcd");
+//     $dumpvars(0,mas_sl_tb);
+//     $display("======3=====");
+//     tst=new(vit,2'b10);
+//    tst.test_run();
+    
+//     $display("======3=====");
+//     tst=new(vit,2'b11);
+//    tst.test_run();
+//     $finish;
+//   end
+endmodule
+
+
+
+
+

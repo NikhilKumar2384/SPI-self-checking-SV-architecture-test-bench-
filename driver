@@ -1,0 +1,38 @@
+class driver;
+  virtual intff vit;
+  mailbox gen2dvr;
+  transaction trans;
+  
+  function new(virtual intff vit, mailbox gen2dvr);
+    this.vit=vit;
+    this.gen2dvr=gen2dvr;
+    
+  endfunction
+  
+  
+  task main();
+    
+    repeat(10)
+      #3
+      begin
+        
+    trans=new();
+    gen2dvr.get(trans);
+    vit.drv.data_tx_m=trans.data_tx_m;
+    vit.drv.data_tx_sl=trans.data_tx_sl;
+    vit.drv.mode=trans.mode;
+    
+    trans.display("driver signal");
+        
+        
+          @(posedge vit.clk);
+      vit.start = 1;
+      @(posedge vit.clk);
+      vit.start = 0;
+        
+          @(posedge vit.mnr.clk);
+        wait(vit.drv.done);
+        
+      end
+  endtask
+endclass

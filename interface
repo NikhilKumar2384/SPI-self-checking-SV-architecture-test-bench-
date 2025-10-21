@@ -1,0 +1,48 @@
+
+interface intff (input bit clk);
+
+  // Common control signals
+  logic start;
+  logic [1:0] mode;
+  logic reset;
+
+  // Master side
+  logic [7:0] data_tx_m;
+  logic [7:0] data_rx_m;
+  logic done;               // from master
+
+  // Slave side
+  logic [7:0] data_tx_sl;
+  logic [7:0] data_rx_sl;
+  logic done_sl;            // from slave
+
+  // SPI signals
+  logic mosi;
+  logic miso;
+   logic cs;
+  logic sclk;
+
+  // Modport for driver (can drive tx + mode + start)
+  modport drv (
+    input  clk,
+    input done,
+    output start,
+    output data_tx_m,
+    output data_tx_sl,
+    output mode
+  );
+
+  // Modport for monitor (can only read outputs and inputs)
+  modport mnr (
+    input clk,
+    input cs,
+    input data_rx_m,
+    input data_rx_sl,
+    input data_tx_m,
+    input data_tx_sl,
+    input mode,
+    input done,
+    input done_sl
+  );
+
+endinterface

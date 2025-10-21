@@ -1,0 +1,22 @@
+class generator;
+  bit [1:0]mode;
+  transaction trans;
+  mailbox gen2dvr;
+  
+  function new(mailbox gen2dvr , bit [1:0]mode);
+    this.gen2dvr=gen2dvr;
+    this.mode=mode;
+  endfunction
+  
+  task main();
+    repeat(10)
+      begin 
+        trans=new();
+        trans.randomize();
+        trans.mode=mode;
+      //trans.display("generator signals");
+        gen2dvr.put(trans);
+      end
+    
+  endtask
+endclass

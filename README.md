@@ -16,6 +16,9 @@ Separate Master and Slave design modules.
 
 A Top-Level Testbench connecting all components.
 
+
+
+
 🧱 Repository Structure
 SPI-Protocol-TB/
 │
@@ -33,6 +36,9 @@ SPI-Protocol-TB/
 ├── top testbench tb          # Top-level TB connecting DUTs and environment
 │
 └── README.md                 # Project description (this file)
+
+
+
 
 ⚙️ Testbench Architecture
 
@@ -63,6 +69,11 @@ This verification environment follows the layered testbench architecture:
              | Master & Slave  |
              +-----------------+
 
+
+
+
+             
+
 🧪 Simulation Steps
 
 Compile all files in your simulator (ModelSim / Questa / Vivado).
@@ -79,6 +90,9 @@ CS (Chip Select) control
 
 Check console/log output for transaction pass/fail reports.
 
+
+
+
 📈 Waveform Results
 
 You can showcase your waveform results in this section:
@@ -92,6 +106,12 @@ CS	Chip Select signal
 DATA	Data transaction visualized
 
 
+
+
+
+
+
+
 🚀 Key Features
 
 Transaction-level verification using SystemVerilog classes and mailboxes
@@ -103,6 +123,14 @@ Modular and reusable verification components
 Easy to scale for multiple SPI slaves
 
 Clean OOP-based structure
+
+
+
+
+
+
+
+
 
 🧰 Tools Used
 

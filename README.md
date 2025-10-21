@@ -20,21 +20,36 @@ The verification environment includes:
 ## 🧱 Repository Structure
 
 SPI-Protocol-TB/
+
 │
+
 ├── master # SPI Master module (DUT)
+
 ├── slave # SPI Slave module (DUT)
+
 │
 ├── interface tb # Interface connecting DUT and TB
+
 ├── transaction tb # Defines SPI transaction (data item class)
+
 ├── generator tb # Randomly generates SPI transactions
+
 ├── driver tb # Drives signals to DUT using transaction data
+
 ├── monitor tb # Monitors DUT outputs and collects data
+
 ├── scoreboard tb # Compares expected vs actual results
+
 ├── environment tb # Connects all components into one environment
+
 ├── test tb # Defines specific test scenario(s)
+
 ├── top testbench tb # Top-level TB connecting DUTs and environment
+
 │
+
 └── README.md # Project description (this file)
+
 
 
 

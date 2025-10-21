@@ -1,0 +1,17 @@
+
+class transaction;
+  rand bit [7:0]data_tx_m;
+  rand bit [7:0]data_tx_sl;
+  bit [1:0]mode;
+  bit [7:0]data_rx_m; 
+  bit [7:0]data_rx_sl;
+  
+  
+ function void display(string name);
+    $display ("------%s------",name);
+   $display ("%0t , data_tx_m: %0b , data_tx_sl: %0b , mode: %0b",$time ,data_tx_m,data_tx_sl,mode);
+    $display("----------------");
+   $display ("data_rx_m: %0b, data_rx_sl: %0b",data_rx_m,data_rx_sl);
+  endfunction
+ 
+endclass

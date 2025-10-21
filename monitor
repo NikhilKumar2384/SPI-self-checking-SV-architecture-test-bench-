@@ -1,0 +1,32 @@
+class monitor;
+  transaction trans;
+  mailbox mon2scr;
+  virtual intff vit;
+  
+  function new(virtual intff vit,mailbox mon2scr);
+    this.vit=vit;
+    this.mon2scr=mon2scr;
+  endfunction
+  
+  task main();
+    repeat(10)
+    
+      begin
+        #30
+        @(posedge vit.mnr.clk);
+        wait( vit.mnr.done);
+        
+        trans=new();
+        trans.data_rx_m=vit.mnr.data_rx_m;
+        trans.data_rx_sl=vit.mnr.data_rx_sl;
+        trans.data_tx_sl=vit.mnr.data_tx_sl; 
+        trans.data_tx_m=vit.mnr.data_tx_m;
+        trans.mode=vit.mnr.mode;
+        
+        mon2scr.put(trans);
+       trans.display("monitor signal");
+        
+      end
+  endtask
+  
+endclass

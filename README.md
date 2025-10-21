@@ -77,3 +77,8 @@ Or you can upload it directly to your repo under `/docs/` or `/waveforms/` and l
 - **Version Control:** Git + GitHub  
 
 ---
+
+## Waveform
+
+<img width="1812" height="310" alt="image" src="https://github.com/user-attachments/assets/2cef904e-ddd3-4233-966d-e2e52e3d1a24" />
+
